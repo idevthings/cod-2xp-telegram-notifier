@@ -18,6 +18,8 @@
   "homepage": "https://github.com/idevthings/cod-2xp-telegram-notifier#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "node-telegram-bot-api": "^0.30.0"
+    "node-cron": "^2.0.3",
+    "node-telegram-bot-api": "^0.30.0",
+    "twit": "^2.2.11"
   }
 }
