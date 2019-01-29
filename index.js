@@ -5,6 +5,9 @@ const TelegramBot = require('node-telegram-bot-api');
 var cron = require('node-cron');
 var Twit = require('twit')
 
+const token = '728041920:AAEqTL7dWdvjkXfdo8Pm8oI1DN6oO3t-17k';
+const bot = new TelegramBot(token, {polling: true});
+
 var T = new Twit({
   consumer_key:         '5sGT518NWqWSmoNKtyWEmYxbD',
   consumer_secret:      'hFrTMP6GJn6IT0p6nG9fWimULllsIo80S2oLuTtD9a7Q93D8ep',
@@ -24,10 +27,16 @@ cron.schedule('* * * * *', () => {
                 console.log('TEXT: ', x.text);
                 console.log('i: ', i);
             }
-        })
-      })
+        });
+      });
 });
 
+bot.on('message', (msg) => {
+    const chatId = msg.chat.id;
+
+    // send a message to the chat acknowledging receipt of their message
+    bot.sendMessage(chatId, '2XP down');
+});
 
 app.get('/', function (req, res) {
     res.send('CoD notifier!');
