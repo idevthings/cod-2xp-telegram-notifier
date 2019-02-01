@@ -33,10 +33,9 @@ cron.schedule('* * * * *', () => {
       });
 });
 
-
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
-    console.log(msg.text);
+    console.log('MESSAGE: ', msg.text);
     if(msg.text === '2xp') {
         bot.sendMessage(chatId, '2XP down');
     }
