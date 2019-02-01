@@ -21,9 +21,9 @@ var T = new Twit({
 var cron = require('node-cron');
 
 cron.schedule('* * * * *', () => {
-    T.get('statuses/user_timeline', { screen_name: 'Treyarch', since_id: 1088171143108878336 }, function(err, data, response) {
+    T.get('statuses/user_timeline', { screen_name: 'Treyarch', since_id: 1091407080722976768 }, function(err, data, response) {
         data.forEach( (x, i) => {
-            if(x.text.includes("2XP")) {
+            if(/(2XP|2X|XP)/.test(x.text)) {
                 console.log('TEXT: ', x.text);
                 console.log('i: ', i);
             }
@@ -33,22 +33,10 @@ cron.schedule('* * * * *', () => {
 
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
-    console.log('CALLING MESSAGE');
-    // send a message to the chat acknowledging receipt of their message
-    bot.sendMessage(chatId, '2XP down');
-});
-
-// Matches "/echo [whatever]"
-bot.onText(/\/echo (.+)/, (msg, match) => {
-    // 'msg' is the received Message from Telegram
-    // 'match' is the result of executing the regexp above on the text content
-    // of the message
-  
-    const chatId = msg.chat.id;
-    const resp = match[1]; // the captured "whatever"
-  
-    // send back the matched "whatever" to the chat
-    bot.sendMessage(chatId, resp);
+    console.log('Message: ', mesg.chat.text);
+    if(/(2XP|2X|XP)/i.test(msg)) {
+        bot.sendMessage(chatId, '2XP down');
+    }
 });
 
 app.get('/', function (req, res) {
