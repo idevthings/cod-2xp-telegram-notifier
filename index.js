@@ -33,7 +33,7 @@ cron.schedule('* * * * *', () => {
       });
 });
 
-bot.on('message', (msg) => {
+bot.onText(/\/2xp/, (msg) => {
     const chatId = msg.chat.id;
     console.log('MESSAGE: ', msg.text);
     if(msg.text === '2xp') {
