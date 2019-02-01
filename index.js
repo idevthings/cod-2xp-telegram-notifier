@@ -33,12 +33,17 @@ cron.schedule('* * * * *', () => {
       });
 });
 
-bot.onText(/\/2xp/, (msg) => {
+// Matches "/echo [whatever]"
+bot.onText(/\/echo (.+)/, (msg, match) => {
+    // 'msg' is the received Message from Telegram
+    // 'match' is the result of executing the regexp above on the text content
+    // of the message
+  
     const chatId = msg.chat.id;
-    console.log('MESSAGE: ', msg.text);
-    if(msg.text === '2xp') {
-        bot.sendMessage(chatId, '2XP down');
-    }
+    const resp = match[1]; // the captured "whatever"
+  
+    // send back the matched "whatever" to the chat
+    bot.sendMessage(chatId, resp);
 });
 
 app.get('/', function (req, res) {
