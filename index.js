@@ -6,7 +6,9 @@ var cron = require('node-cron');
 var Twit = require('twit')
 
 const token = '728041920:AAEqTL7dWdvjkXfdo8Pm8oI1DN6oO3t-17k';
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, {polling: false});
+bot.stopPolling(true);
+//bot.startPolling();
 
 var T = new Twit({
   consumer_key:         '5sGT518NWqWSmoNKtyWEmYxbD',
@@ -31,15 +33,20 @@ cron.schedule('* * * * *', () => {
       });
 });
 
+
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
-
-    // send a message to the chat acknowledging receipt of their message
-    bot.sendMessage(chatId, '2XP down');
+    console.log(msg.text);
+    if(msg.text === '2xp') {
+        bot.sendMessage(chatId, '2XP down');
+    }
 });
 
 app.get('/', function (req, res) {
     res.send('CoD notifier!');
+    bot.getUpdates().then(x => {
+        console.log('HI', x);
+    });
 });
 
 app.listen(process.env.PORT || 5000, function () {
