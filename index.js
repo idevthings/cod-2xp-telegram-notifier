@@ -33,6 +33,13 @@ cron.schedule('* * * * *', () => {
       });
 });
 
+bot.on('message', (msg) => {
+    const chatId = msg.chat.id;
+    console.log('CALLING MESSAGE');
+    // send a message to the chat acknowledging receipt of their message
+    bot.sendMessage(chatId, '2XP down');
+});
+
 // Matches "/echo [whatever]"
 bot.onText(/\/echo (.+)/, (msg, match) => {
     // 'msg' is the received Message from Telegram
