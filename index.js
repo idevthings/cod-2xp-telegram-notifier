@@ -33,12 +33,25 @@ cron.schedule('* * * * *', () => {
 });
 
 bot.on('message', (msg) => {
+    console.log('Added MSG: ');
     const chatId = msg.chat.id;
     console.log('Message: ', mesg.chat.text);
     if(/(2XP|2X|XP)/i.test(msg)) {
         bot.sendMessage(chatId, '2XP down');
     }
 });
+
+bot.onText(/\/echo (.+)/, (msg, match) => {
+    // 'msg' is the received Message from Telegram
+    // 'match' is the result of executing the regexp above on the text content
+    // of the message
+    console.log('matches!!!')
+    const chatId = msg.chat.id;
+    const resp = match[1]; // the captured "whatever"
+  
+    // send back the matched "whatever" to the chat
+    bot.sendMessage(chatId, resp);
+  });
 
 app.get('/', function (req, res) {
     res.send('CoD notifier!');
