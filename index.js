@@ -3,10 +3,10 @@ var app = express();
 
 const TelegramBot = require('node-telegram-bot-api');
 var cron = require('node-cron');
-var Twit = require('twit')
+var Twit = require('twit');
 
 const token = '728041920:AAEqTL7dWdvjkXfdo8Pm8oI1DN6oO3t-17k';
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, {polling: true, interval: 5000});
 
 var T = new Twit({
   consumer_key:         '5sGT518NWqWSmoNKtyWEmYxbD',
