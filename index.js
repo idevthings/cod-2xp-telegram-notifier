@@ -6,7 +6,7 @@ var cron = require('node-cron');
 var Twit = require('twit');
 var fs = require('fs');
 
-const token = '728041920:AAEqTL7dWdvjkXfdo8Pm8oI1DN6oO3t-17k';
+const token = '728041920:AAG5f1AhGqycEhPEpAAXU-dOxM6K0mI09l8';
 const bot = new TelegramBot(token, {polling: true, interval: 5000});
 
 var T = new Twit({
